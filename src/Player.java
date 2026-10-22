@@ -1,9 +1,11 @@
 public class Player{
     private String name;
     private int health;
-    public Player(String name){
+    private Weapon weapon;
+    public Player(String name,Weapon weapon){
         this.name=name;
         this.health=100;
+        this.weapon=weapon;
     }
     public String getName(){
         return name;
@@ -15,6 +17,9 @@ public class Player{
     }
     public int getHealth(){
         return health;
+    }
+    public Weapon getWeapon(){
+        return weapon;
     }
     public void takeDamage(int damage){
         if(damage<=0){
