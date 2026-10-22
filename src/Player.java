@@ -21,6 +21,10 @@ public class Player{
     public Weapon getWeapon(){
         return weapon;
     }
+    public int attack(){
+        System.out.println(name+ " attacks with "+weapon.getName()+"!");
+        return weapon.getDamage();
+    }
     public void takeDamage(int damage){
         if(damage<=0){
             System.out.println("Damage must be positive");
