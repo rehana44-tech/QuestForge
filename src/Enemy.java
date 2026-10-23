@@ -21,6 +21,8 @@ public class Enemy {
         if (health < 0) {
             health = 0;
         }
-    
 }
+ public boolean isAlive(){
+            return health>0;
+        }
 }
