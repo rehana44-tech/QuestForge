@@ -5,4 +5,8 @@ public class Dragon extends Enemy{
     public void breatheFire(){
         System.out.println(getName()+" breathes fire !");
     }
+    @Override 
+    public void makeSound(){
+        System.out.println(getName()+ " roars!");
+    }
 }

@@ -25,4 +25,7 @@ public class Enemy {
  public boolean isAlive(){
             return health>0;
         }
+        public void makeSound(){
+            System.out.println(getName()+ " makes a sound.");
+        }
 }
