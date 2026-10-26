@@ -1,4 +1,4 @@
-public class Enemy {
+public abstract class Enemy {
     private String name;
     private int health;
     public Enemy(String name,int health){
@@ -25,7 +25,5 @@ public class Enemy {
  public boolean isAlive(){
             return health>0;
         }
-        public void makeSound(){
-            System.out.println(getName()+ " makes a sound.");
-        }
+        public abstract void makeSound();
 }
