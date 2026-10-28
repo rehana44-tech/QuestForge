@@ -22,4 +22,7 @@ public class Inventory {
     public boolean hasItem(String item){
         return items.contains(item);
     }
+    public int getItemCount(){
+        return items.size();
+    }
 }
