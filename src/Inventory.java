@@ -19,4 +19,7 @@ public class Inventory {
             System.out.println(item+" not found");
         }
     }
+    public boolean hasItem(String item){
+        return items.contains(item);
+    }
 }
