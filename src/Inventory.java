@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 public class Inventory {
+    private final int maxCapacity=5;
     private ArrayList<String> items=new ArrayList<>();
     public void addItem(String item){
+        if(items.size()<maxCapacity){
         items.add(item);
         System.out.println(item+" added to inventory");
+        }
+        else{
+            System.out.println("Inventory is full");
+        }
     }
     public void showItems(){
         System.out.println("Your Inventory: ");

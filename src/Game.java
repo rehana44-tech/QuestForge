@@ -12,14 +12,10 @@ public class Game {
   inventory.addItem("Iron Sword");
   inventory.addItem("Health Potion");
   inventory.addItem("Wooden Shield");
+  inventory.addItem("Magic Wand");
+ inventory.addItem("Steel Armor");
+ inventory.addItem("Golden Bow");
   inventory.showItems();
-
-  inventory.removeItem("Health Potion");
-  inventory.showItems();
-  System.out.println("Total items: " + inventory.getItemCount());
-  System.out.println("Has Iron Sword ?"+inventory.hasItem("Iron Sword"));
-    System.out.println("Has Magic Wand ?"+inventory.hasItem("Magic Wand"));
-  inventory.removeItem("Magic Wand");
 
     }
 }
