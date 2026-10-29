@@ -15,6 +15,9 @@ public class Game {
   inventory.addItem("Magic Wand");
  inventory.addItem("Steel Armor");
  inventory.addItem("Golden Bow");
+ inventory.addItem("");
+  inventory.addItem(" ");
+
   inventory.showItems();
 
     }
