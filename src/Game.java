@@ -20,5 +20,21 @@ public class Game {
 
   inventory.showItems();
 
+  System.out.println("\n---QUEST SYSTEM---");
+  Quest goblinQuest=new Quest("Defeat the Goblin","Defeat one Goblin to protect the village");
+  System.out.println("Quest: "+goblinQuest.getName());
+  System.out.println("Description: " + goblinQuest.getDescription());
+System.out.println("Status: " + goblinQuest.getStatus());
+
+goblinQuest.startQuest();
+
+System.out.println("Status: " + goblinQuest.getStatus());
+
+goblinQuest.completeQuest();
+goblinQuest.startQuest();
+goblinQuest.completeQuest();
+
+System.out.println("Status: " + goblinQuest.getStatus());
+
     }
 }
