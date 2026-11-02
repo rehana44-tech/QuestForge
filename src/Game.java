@@ -19,9 +19,9 @@ public class Game {
   inventory.addItem(" ");
 
   inventory.showItems();
-
-
 System.out.println("\n--- QUEST SYSTEM ---");
+
+Goblin goblin = new Goblin("Goblin", 60);
 
 Quest goblinQuest = new Quest(
     "Defeat the Goblin",
@@ -29,21 +29,30 @@ Quest goblinQuest = new Quest(
 );
 
 System.out.println("Quest: " + goblinQuest.getName());
+System.out.println("Description: " + goblinQuest.getDescription());
 System.out.println("Status: " + goblinQuest.getStatus());
 
 goblinQuest.startQuest();
 
-// Try completing the quest without completing its objective
+System.out.println("Goblin health: " + goblin.getHealth());
+System.out.println("Goblin alive: " + goblin.isAlive());
+Player player=new Player("Arin",new Weapon("Iron Sword",25));
+int damage=player.attack();
+goblin.takeDamage(damage);
+
+System.out.println("Goblin health after attack: "+goblin.getHealth());
+System.out.println("Goblin alive: "+goblin.isAlive());
+
+while (goblin.isAlive()) {
+    int nextDamage = player.attack();
+    goblin.takeDamage(nextDamage);
+
+    System.out.println("Goblin health: " + goblin.getHealth());
+}
+if(!goblin.isAlive()){
+    goblinQuest.completeObjective();
+}
 goblinQuest.completeQuest();
-
-// Now complete the objective
-goblinQuest.completeObjective();
-
-// Try completing the quest again
-goblinQuest.completeQuest();
-
-System.out.println("Final Status: " + goblinQuest.getStatus());
-
-
+System.out.println("Final Quest Status: "+goblinQuest.getStatus());
     }
 }

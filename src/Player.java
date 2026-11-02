@@ -11,7 +11,7 @@ public class Player{
         return name;
     }
     public void setName(String name){
-        if(!name.isBlank()&&name!=null){
+        if(name!=null&&!name.isBlank()){
             this.name=name;
         }
     }
