@@ -31,6 +31,13 @@ Quest goblinQuest = new Quest(
 System.out.println("Quest: " + goblinQuest.getName());
 System.out.println("Description: " + goblinQuest.getDescription());
 System.out.println("Status: " + goblinQuest.getStatus());
+Quest testQuest = new Quest(
+    "Test Quest",
+    "This is only for testing."
+);
+
+testQuest.completeQuest();
+
 
 goblinQuest.startQuest();
 
@@ -53,6 +60,7 @@ if(!goblin.isAlive()){
     goblinQuest.completeObjective();
 }
 goblinQuest.completeObjective();
+goblinQuest.completeQuest();
 goblinQuest.completeQuest();
 System.out.println("Final Quest Status: "+goblinQuest.getStatus());
     }

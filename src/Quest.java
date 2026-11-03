@@ -27,15 +27,21 @@ public class Quest {
             System.out.println("Quest cannot be started");
         }
     }
-    public void completeQuest(){
-        if(status==QuestStatus.IN_PROGRESS&& objectiveCompleted){
-            status=QuestStatus.COMPLETED;
-            System.out.println(name + " quest completed !");
-        }
-        else{
-            System.out.println("Quest cannot be completed. Finish the objective first.");
-        }
+ public void completeQuest() {
+    if (status == QuestStatus.NOT_STARTED) {
+        System.out.println("Start the quest first.");
+    } 
+    else if (status == QuestStatus.COMPLETED) {
+        System.out.println("Quest already completed.");
+    } 
+    else if (!objectiveCompleted) {
+        System.out.println("Finish the objective first.");
+    } 
+    else {
+        status = QuestStatus.COMPLETED;
+        System.out.println(name + " quest completed!");
     }
+}
    public void completeObjective() {
     if (status != QuestStatus.IN_PROGRESS) {
         System.out.println("Start the quest first.");
