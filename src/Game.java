@@ -52,6 +52,7 @@ while (goblin.isAlive()) {
 if(!goblin.isAlive()){
     goblinQuest.completeObjective();
 }
+goblinQuest.completeObjective();
 goblinQuest.completeQuest();
 System.out.println("Final Quest Status: "+goblinQuest.getStatus());
     }

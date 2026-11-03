@@ -36,13 +36,14 @@ public class Quest {
             System.out.println("Quest cannot be completed. Finish the objective first.");
         }
     }
-    public void completeObjective(){
-        if(status==QuestStatus.IN_PROGRESS){
-            objectiveCompleted=true;
-            System.out.println("Objective Achieved");
-        }
-        else{
-            System.out.println("Start the quest first");
-        }
+   public void completeObjective() {
+    if (status != QuestStatus.IN_PROGRESS) {
+        System.out.println("Start the quest first.");
+    } else if (objectiveCompleted) {
+        System.out.println("Objective already completed.");
+    } else {
+        objectiveCompleted = true;
+        System.out.println("Objective Achieved");
     }
+}
 }
