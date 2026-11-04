@@ -1,0 +1,3 @@
+Player: Arin
+Health: 75
+Weapon: Iron Sword
