@@ -18,6 +18,11 @@ public class Player{
     public int getHealth(){
         return health;
     }
+    public void setHealth(int health) {
+    if (health >= 0 && health <= 100) {
+        this.health = health;
+    }
+}
     public Weapon getWeapon(){
         return weapon;
     }
