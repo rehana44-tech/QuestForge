@@ -17,16 +17,29 @@ writer.write("Weapon: " + player.getWeapon().getName() + "\n");
         writer.close();
         FileReader reader= new FileReader("savegame.txt");
         BufferedReader bufferedReader = new BufferedReader(reader);
-        String line;
+String line;
+int loadedHealth = 0;
+
 while ((line = bufferedReader.readLine()) != null) {
+
     System.out.println(line);
+
+    if (line.startsWith("Health: ")) {
+        String savedHealth = line.substring(8);
+
+        loadedHealth = Integer.parseInt(savedHealth);
+    }
 }
+
+bufferedReader.close();
 bufferedReader.close();
 
-String savedHealth = "45";
+Player loadedPlayer = new Player("Arin", weapon);
 
-int health = Integer.parseInt(savedHealth);
+System.out.println("New player's health before loading: " + loadedPlayer.getHealth());
 
-System.out.println("Converted health: " + health);
+loadedPlayer.setHealth(loadedHealth);
+
+System.out.println("New player's health after loading: " + loadedPlayer.getHealth());
     }
 }
