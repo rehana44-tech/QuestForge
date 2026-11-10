@@ -1,25 +1,53 @@
+import java.util.Scanner;
 public class Game {
 
     public static void main(String[] args) {
-  Enemy enemy1=new Goblin("Goblin" , 60);
-  Enemy enemy2=new Dragon("Smaug",200);
-  FireBreather creature= new Dragon("Smaug",200);
+      Scanner scanner = new Scanner(System.in);
 
-  enemy1.makeSound();
-  enemy2.makeSound();
-  creature.breatheFire();
-  Inventory inventory= new Inventory();
-  inventory.addItem("Iron Sword");
-  inventory.addItem("Health Potion");
-  inventory.addItem("Wooden Shield");
-  inventory.addItem("Magic Wand");
- inventory.addItem("Steel Armor");
- inventory.addItem("Golden Bow");
- inventory.addItem("");
-  inventory.addItem(" ");
+    System.out.println("===== QUESTFORGE =====");
+    System.out.println("1. New Game");
+    System.out.println("2. Load Game");
+    System.out.println("3. Exit");
 
-  inventory.showItems();
-System.out.println("\n--- QUEST SYSTEM ---");
+    System.out.print("Choose an option: ");
+    int choice = scanner.nextInt();
+
+    switch (choice) {
+    case 1:{
+         startNewGame();
+        break;
+    }
+    case 2:{
+        System.out.println("Loading saved game...");
+        break;
+    }
+    case 3:{
+        System.out.println("Exiting QuestForge. Goodbye!");
+        break;
+    }
+    default:
+        System.out.println("Invalid choice! Please select 1, 2, or 3.");
+}
+
+    scanner.close();
+    }
+    public static Player startNewGame(){
+        Player player = new Player("Arin", new Weapon("Iron Sword", 25));
+
+    System.out.println("New game started!");
+    System.out.println("Player: " + player.getName());
+    System.out.println("Health: " + player.getHealth());
+    System.out.println("Weapon: " + player.getWeapon().getName());
+
+    Inventory inventory = new Inventory();
+
+   inventory.addItem("Iron Sword");
+   inventory.addItem("Health Potion");
+   inventory.addItem("Wooden Shield");
+
+   inventory.showItems();
+
+   System.out.println("\n--- QUEST SYSTEM ---");
 
 Goblin goblin = new Goblin("Goblin", 60);
 
@@ -34,14 +62,14 @@ System.out.println("Status: " + goblinQuest.getStatus());
 
 goblinQuest.startQuest();
 
-System.out.println("Goblin health: " + goblin.getHealth());
+   System.out.println("Goblin health: " + goblin.getHealth());
 System.out.println("Goblin alive: " + goblin.isAlive());
-Player player=new Player("Arin",new Weapon("Iron Sword",25));
-int damage=player.attack();
+
+int damage = player.attack();
 goblin.takeDamage(damage);
 
-System.out.println("Goblin health after attack: "+goblin.getHealth());
-System.out.println("Goblin alive: "+goblin.isAlive());
+System.out.println("Goblin health after attack: " + goblin.getHealth());
+System.out.println("Goblin alive: " + goblin.isAlive());
 
 while (goblin.isAlive()) {
     int nextDamage = player.attack();
@@ -49,10 +77,14 @@ while (goblin.isAlive()) {
 
     System.out.println("Goblin health: " + goblin.getHealth());
 }
-if(!goblin.isAlive()){
+
+if (!goblin.isAlive()) {
     goblinQuest.completeObjective();
 }
+
 goblinQuest.completeQuest();
-System.out.println("Final Quest Status: "+goblinQuest.getStatus());
-    }
+
+System.out.println("Final Quest Status: " + goblinQuest.getStatus());
+return player;    
+}
 }
