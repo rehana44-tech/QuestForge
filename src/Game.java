@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 public class Game {
 
@@ -11,14 +14,20 @@ public class Game {
 
     System.out.print("Choose an option: ");
     int choice = scanner.nextInt();
-
+    Player player=null;
     switch (choice) {
     case 1:{
-         startNewGame();
+          player=startNewGame();
         break;
     }
     case 2:{
-        System.out.println("Loading saved game...");
+        player = loadGame();
+          if (player != null) {
+        System.out.println("Game loaded successfully!");
+        System.out.println("Player: " + player.getName());
+        System.out.println("Health: " + player.getHealth());
+        System.out.println("Weapon: " + player.getWeapon().getName());
+    }
         break;
     }
     case 3:{
@@ -86,5 +95,38 @@ goblinQuest.completeQuest();
 
 System.out.println("Final Quest Status: " + goblinQuest.getStatus());
 return player;    
+}
+public static Player loadGame() {
+
+    System.out.println("Loading saved game...");
+    String loadedName = "";
+    int loadedHealth = 0;
+    String loadedWeapon = "";
+    int loadedDamage = 0;
+
+    try {
+    FileReader fileReader = new FileReader("savegame.txt");
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+    String line = bufferedReader.readLine();
+    loadedName=line.substring(8);
+    line = bufferedReader.readLine();
+    loadedHealth = Integer.parseInt(line.substring(8));
+    line = bufferedReader.readLine();
+    loadedWeapon = line.substring(8);
+    line = bufferedReader.readLine();
+    loadedDamage = Integer.parseInt(line.substring(8));
+    bufferedReader.close();
+
+    Weapon weapon = new Weapon(loadedWeapon, loadedDamage);
+    Player loadedPlayer = new Player(loadedName, weapon);
+    loadedPlayer.setHealth(loadedHealth);
+    return loadedPlayer;
+}
+catch (IOException e) {
+    System.out.println("No saved game found!");
+    return null;
+}
+
+
 }
 }
