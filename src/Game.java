@@ -1,20 +1,24 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 public class Game {
 
     public static void main(String[] args) {
       Scanner scanner = new Scanner(System.in);
+      Player player = null;
+      boolean running = true;
 
+while (running) {
     System.out.println("===== QUESTFORGE =====");
-    System.out.println("1. New Game");
-    System.out.println("2. Load Game");
-    System.out.println("3. Exit");
+   System.out.println("1. New Game");
+System.out.println("2. Load Game");
+System.out.println("3. Save Game");
+System.out.println("4. Exit");
 
     System.out.print("Choose an option: ");
     int choice = scanner.nextInt();
-    Player player=null;
     switch (choice) {
     case 1:{
           player=startNewGame();
@@ -30,15 +34,25 @@ public class Game {
     }
         break;
     }
-    case 3:{
+    case 3: {
+    if (player != null) {
+        saveGame(player);
+    } else {
+        System.out.println("No active game to save!");
+    }
+    break;
+}
+    case 4:{
         System.out.println("Exiting QuestForge. Goodbye!");
+        running=false;
         break;
     }
     default:
-        System.out.println("Invalid choice! Please select 1, 2, or 3.");
+        System.out.println("Invalid choice! Please select 1, 2,3 or 4.");
 }
-
+}
     scanner.close();
+
     }
     public static Player startNewGame(){
         Player player = new Player("Arin", new Weapon("Iron Sword", 25));
@@ -128,5 +142,19 @@ catch (IOException e) {
 }
 
 
+}
+public static void saveGame(Player player) {
+try {
+    FileWriter writer = new FileWriter("savegame.txt");
+    writer.write("Player: " + player.getName() + "\n");
+    writer.write("Health: " + player.getHealth() + "\n");
+    writer.write("Weapon: " + player.getWeapon().getName() + "\n");
+    writer.write("Damage: " + player.getWeapon().getDamage() + "\n");
+    writer.close();
+System.out.println("Game saved successfully!");
+}
+catch (IOException e) {
+    System.out.println("Error saving game!");
+}
 }
 }

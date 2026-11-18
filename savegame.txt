@@ -1,4 +1,4 @@
 Player: Arin
-Health: 30
-Weapon: Magic Wand
-Damage: 40
+Health: 100
+Weapon: Iron Sword
+Damage: 25
