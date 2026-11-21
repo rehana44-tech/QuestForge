@@ -21,7 +21,7 @@ System.out.println("4. Exit");
     int choice = scanner.nextInt();
     switch (choice) {
     case 1:{
-          player=startNewGame();
+          player=startNewGame(scanner);
         break;
     }
     case 2:{
@@ -54,7 +54,7 @@ System.out.println("4. Exit");
     scanner.close();
 
     }
-    public static Player startNewGame(){
+    public static Player startNewGame(Scanner scanner ){
         Player player = new Player("Arin", new Weapon("Iron Sword", 25));
 
     System.out.println("New game started!");
@@ -73,7 +73,7 @@ System.out.println("4. Exit");
    System.out.println("\n--- QUEST SYSTEM ---");
 
 Goblin goblin = new Goblin("Goblin", 60);
-
+boolean defending = false;
 Quest goblinQuest = new Quest(
     "Defeat the Goblin",
     "Defeat one Goblin to protect the village."
@@ -88,17 +88,64 @@ goblinQuest.startQuest();
    System.out.println("Goblin health: " + goblin.getHealth());
 System.out.println("Goblin alive: " + goblin.isAlive());
 
-int damage = player.attack();
-goblin.takeDamage(damage);
+while (player.isAlive() && goblin.isAlive()) {
 
-System.out.println("Goblin health after attack: " + goblin.getHealth());
-System.out.println("Goblin alive: " + goblin.isAlive());
+    System.out.println("\n--- YOUR TURN ---");
+    System.out.println("Player Health: " + player.getHealth());
+    System.out.println("Goblin Health: " + goblin.getHealth());
 
-while (goblin.isAlive()) {
-    int nextDamage = player.attack();
-    goblin.takeDamage(nextDamage);
+    System.out.println("\nChoose your action:");
+    System.out.println("1. Attack");
+    System.out.println("2. Defend");
+    System.out.println("3. Use Health Potion");
 
-    System.out.println("Goblin health: " + goblin.getHealth());
+    System.out.print("Enter your choice: ");
+    int choice = scanner.nextInt();
+
+    switch (choice) {
+
+        case 1:
+            int damage = player.attack();
+            goblin.takeDamage(damage);
+            System.out.println("Goblin health: " + goblin.getHealth());
+            break;
+
+        case 2:
+            defending = true;
+            System.out.println("Arin prepares to defend!");
+            break;
+
+        case 3:
+            System.out.println("Potion functionality coming soon!");
+            break;
+
+        default:
+            System.out.println("Invalid choice!");
+            continue;
+    }
+
+    if (goblin.isAlive()) {
+        System.out.println("\n--- GOBLIN'S TURN ---");
+        goblin.makeSound();
+
+        int enemyDamage = goblin.attack();
+
+        if (defending) {
+            enemyDamage = enemyDamage / 2;
+            System.out.println("Arin blocks some damage!");
+        }
+
+        player.takeDamage(enemyDamage);
+        System.out.println("Arin's health: " + player.getHealth());
+
+        defending = false;
+    }
+}
+
+if (player.isAlive()) {
+    System.out.println("\nYou defeated the Goblin!");
+} else {
+    System.out.println("\nArin has been defeated!");
 }
 
 if (!goblin.isAlive()) {

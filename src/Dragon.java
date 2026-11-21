@@ -10,4 +10,8 @@ public class Dragon extends Enemy implements FireBreather{
     public void makeSound(){
         System.out.println(getName()+ " roars!");
     }
+    @Override
+public int attack(){
+    return 25;
+}
 }

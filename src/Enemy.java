@@ -25,5 +25,6 @@ public abstract class Enemy {
  public boolean isAlive(){
             return health>0;
         }
+        public abstract int attack();
         public abstract void makeSound();
 }

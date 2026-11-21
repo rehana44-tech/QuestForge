@@ -6,5 +6,9 @@ public class Goblin extends Enemy{
     public void makeSound(){
         System.out.println(getName()+ " growls !");
     }
+    @Override 
+    public int attack(){
+    return 10;
+}
     
 }
